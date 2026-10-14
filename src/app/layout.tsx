@@ -1,0 +1,41 @@
+import type { Metadata } from 'next';
+import { Inter, Poppins } from 'next/font/google';
+import './globals.css';
+import { AppProvider } from '@/lib/store';
+import { StoreLayoutShell } from '@/components/layout/StoreLayoutShell';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-poppins',
+  display: 'swap',
+});
+
+export const metadata: Metadata = {
+  title: 'SWARN BHARAT | Architectural Minimalist Luxury Clothing',
+  description: 'Experience bespoke 500 GSM French Terry hoodies, Australian Merino wool knits, and European linen shirts. Free express delivery across India with 7-day doorstep returns.',
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${poppins.variable} scroll-smooth`}>
+      <body suppressHydrationWarning className="min-h-screen flex flex-col bg-white text-zinc-900 font-sans antialiased selection:bg-zinc-950 selection:text-white">
+        <AppProvider>
+          <StoreLayoutShell>
+            {children}
+          </StoreLayoutShell>
+        </AppProvider>
+      </body>
+    </html>
+  );
+}
